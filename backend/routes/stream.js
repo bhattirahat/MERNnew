@@ -1,6 +1,6 @@
 const express = require('express')
 const {
-    createStream,getSingleStream,getStream,
+    createStream,getSingleStream,getStream, createEco,
 } = require('../ Controller/streamController')
 const router = express.Router()
 
@@ -11,6 +11,8 @@ router.get('/:id',getSingleStream)
 //post single stream
 
 router.post('/', createStream)
+
+router.post('/eco',createEco)
 
 //delete
 router.delete('/:id',(req,res)=>{

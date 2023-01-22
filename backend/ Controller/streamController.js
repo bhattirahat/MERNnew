@@ -1,5 +1,6 @@
 const { json } = require('express')
 const Stream = require('../models/streamdb')
+const Eco = require('../models/save')
 
 //GET all stream
 const getStream = async (req,res) => {
@@ -30,12 +31,21 @@ const createStream = async (req,res) => {
         res.status(400).json({error:error.message})
     }
     }
+const createEco = async (req,res) =>{
+    const {recycle,garbage,compost} = req.body
 
+    try{
+        const eco = await Eco.create({recycle,garbage,compost})
+        res.status(200).json(eco)
+    }catch(error){
+        res.status(400).json({error:error.message})
+    }
+}
 //delete new stream
 
 //update a new stream
 
 
 module.exports = {
-    createStream,getSingleStream,getStream,
+    createStream,getSingleStream,getStream,createEco
 }
